@@ -12,6 +12,7 @@
 }
 .changeColorInNav:hover {
     background-color: #93C54B;
+    border-radius: 15px;
 }
 
 .fontFooter {
@@ -19,4 +20,9 @@
     font-size: 20px;
     color: #339c02;
 
+}
+
+.textStyle {
+    font-weight: bold;
+    -webkit-text-stroke: 1px black;
 }
