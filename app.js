@@ -49,7 +49,12 @@ app.get('/contact', (req, res) => {
 app.get('/shop', (req, res) => {
     res.render('vwProducts/shop');
 });
-
+app.get('/login', (req, res) => {
+    res.render('vwAccount/login');
+});
+app.get('/register', (req, res) => {
+    res.render('vwAccount/register');
+});
 
 app.get('/err', (req, res) => {
     res.render('notFound', {layout: false});
