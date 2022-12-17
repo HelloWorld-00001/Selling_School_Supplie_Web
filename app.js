@@ -33,6 +33,9 @@ app.use('/admin', ProductRoute);
 app.get('/', (req, res) => {
     res.render('home');
 });
+app.get('/search', (req, res) => {
+    res.render('vwProducts/search');
+});
 app.get('/about', (req, res) => {
     res.render('vwProducts/about');
 });
