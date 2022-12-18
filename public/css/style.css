@@ -8011,7 +8011,9 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #82ae46; }
+  /* color: #82ae46;  */
+  color: var(--red);
+}
   a:hover, a:focus {
     text-decoration: none;
     color: #82ae46; }
@@ -8598,14 +8600,15 @@ h1, h2, h3, h4, h5,
 .deal-of-the-day h3 {
   font-size: 30px;
   font-family: "Lora", Georgia, serif;
-  font-style: italic; }
+  /* font-style: italic;  */
+}
   .deal-of-the-day h3 a {
-    color: #82ae46; }
+    color: var(--red); }
 
 .deal-of-the-day .price {
   font-weight: 500;
   font-size: 18px;
-  color: rgba(0, 0, 0, 0.5); }
+  color: var(--red); }
 
 #timer {
   width: 80%; }
@@ -8617,7 +8620,7 @@ h1, h2, h3, h4, h5,
     font-size: 40px;
     font-weight: 500;
     border-left: 1px solid rgba(0, 0, 0, 0.05);
-    color: #82ae46; }
+    color: var(--red); }
     @media (max-width: 991.98px) {
       #timer .time {
         font-size: 30px; } }
@@ -9277,8 +9280,10 @@ textarea.form-control {
     display: block;
     margin-bottom: 10px;
     font-family: "Lora", Georgia, serif;
-    font-style: italic;
-    color: #82ae46; }
+    /* font-style: italic; */
+    /* color: #82ae46;  */
+    color: black;
+  }
   .heading-section h2 {
     position: relative;
     font-size: 40px;
@@ -9386,7 +9391,6 @@ textarea.form-control {
     .ftco-category .category-wrap-2 .text h2 {
       color: #82ae46;
       font-family: "Lora", Georgia, serif;
-      font-style: italic;
       font-size: 24px; }
 
 .testimony-section {
