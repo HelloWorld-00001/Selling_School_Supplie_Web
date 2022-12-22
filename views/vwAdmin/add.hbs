@@ -1,46 +1,65 @@
-<form method="post">
-    <div class="form-row">
-        <div class="form-group col-md-6 ml-3">
-            <label for="inputEmail4">Product Name</label>
-            <input name="ProductName" type="text" class="form-control" id="inputEmail4" placeholder="Name">
-        </div>
-        <div class="form-group col-md-3">
-            <label for="inputPassword4">Price</label>
-            <input name="Price" type="numeric" class="form-control" id="inputPassword4" placeholder="Price">
-        </div>
-    </div>
+<form method="post" id="frmInputCourse" class="container-fluid py-10">
+    <section class="pcoded-main-container">
+        <div class="pcoded-wrapper">
 
-    <div class="form-row ml-3">
-        <div class="form-group col-md-2">
-            <label for="inputAddress">Quantity</label>
-            <input name="Quantity" style="width:100%" type="numeric" class="form-control" id="inputAddress"
-                placeholder="">
+            <div class="card py-5 px-3" style="font-size:20px">
+
+                <div class="page-header-title mt-3">
+                    <h5 class="m-b-10">
+                        <h2>Products list</h2>
+                    </h5>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group col-6">
+                        <label for="inputEmail4">Product Name</label>
+                        <input name="ProductName" type="text" class="form-control" id="inputEmail4" placeholder="Name">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="inputPassword4">Price</label>
+                        <input name="Price" type="numeric" class="form-control" id="inputPassword4" placeholder="Price">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="form-group col-3">
+                        <label for="inputAddress">Quantity</label>
+                        <input name="Quantity" style="width:100%" type="numeric" class="form-control" id="inputAddress"
+                            placeholder="">
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="inputPassword4">Discount</label>
+                        <input name="Discount" type="numeric" class="form-control" id="inputPassword4" placeholder="%">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="inputEmail4">Image link</label>
+                        <input name="Image" type="text" class="form-control" id="inputEmail4" placeholder="Link">
+                    </div>
+
+                </div>
+
+                <div class="form-group row ml-1 mr-1">
+                    <label for="inputDes">Short description</label>
+                    <input name="TinyDes" style="width:100%" type="text" class="form-control" id="inputAddress"
+                        placeholder="">
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputAddress2" class="ml-3">Full description</label>
+                    <div class="form-group col-12">
+                        <textarea name="FullDes" id="w3review" name="w3review" rows="4" cols="120%">
+                    </textarea></div>
+                    </div>
+                <div class="form-group row">
+                    <div class="form-group col-6">
+                        <a name="" id="" class="btn btn-primary col-6" href="/admin" role="button">Back to list</a>
+                    </div>
+                    <div class="form-group col-6 align-right">
+                        <button type="submit" class="btn btn-primary col-6">Save</button>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="form-group col-md-2">
-            <label for="inputPassword4">Discount</label>
-            <input name="Discount" type="numeric" class="form-control" id="inputPassword4" placeholder="%">
-        </div>
-        <div class="form-group col-md-5">
-            <label for="inputEmail4">Image link</label>
-            <input name="Image" type="text" class="form-control" id="inputEmail4" placeholder="Link">
-        </div>
-
-    </div>
-
-    <div class="form-row ml-3">
-        <div class="form-group col-md-9">
-        <label for="inputDes">Short description</label>
-        <input name="TinyDes" style="width:100%" type="text" class="form-control" id="inputAddress" placeholder="">
-        </div>
-    </div>
-
-    <div class="form-group ml-3">
-        <label for="inputAddress2">Full description</label><br>
-        <textarea name="FullDes" id="w3review" name="w3review" rows="4" cols="100%">
-     </textarea>
-    </div>
-
-    <a name="" id="" class="btn btn-primary ml-3" href="/admin" role="button">Back to list</a>
-    <button type="submit" class="btn btn-primary ml-4">Save</button>
 </form>

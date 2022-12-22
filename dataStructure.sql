@@ -13,18 +13,20 @@
 
  Date: 23/08/2018 18:56:44
 */
-
+DROP DATABASE IF EXISTS qlbandodunghoctap;
+CREATE DATABASE qlbandodunghoctap;
+use qlbandodunghoctap;
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for
--- ----------------------------
-DROP TABLE IF EXISTS `Category`;
-CREATE TABLE `Category` (
-    `CatID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `CatName` VARCHAR(50) COLLATE UTF8_GENERAL_CI NOT NULL,
-    PRIMARY KEY (`CatID`)
+-- ---------------------------
+DROP TABLE IF EXISTS Category;
+CREATE TABLE Category (
+    CatID INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    CatName VARCHAR(50) COLLATE UTF8_GENERAL_CI NOT NULL,
+    PRIMARY KEY (CatID)
 )  ENGINE=MYISAM AUTO_INCREMENT=22 DEFAULT CHARSET=UTF8 COLLATE = UTF8_GENERAL_CI;
 
 
@@ -32,111 +34,88 @@ CREATE TABLE `Category` (
 -- ----------------------------
 -- Table structure for course
 -- ----------------------------
-DROP TABLE IF EXISTS `Product`;
-CREATE TABLE `Product` (
-  `ProductID`int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `ProductName` VARCHAR(100) COLLATE UTF8_GENERAL_CI NOT NULL,
-  `CatID` int(11),
-  `Price` float not null,
-  `TinyDes` VARCHAR(200) COLLATE UTF8_GENERAL_CI NOT NULL,
-  `FullDes` Text COLLATE UTF8_GENERAL_CI NOT NULL,
-  `Image` varchar(255),
-  `Discount` float,
-  `AvgRate` float,
-  `ToTalLike` int,
-  `Quantity`  int,
+DROP TABLE IF EXISTS Product;
+CREATE TABLE Product (
+  ProductID int(11) unsigned NOT NULL AUTO_INCREMENT,
+  ProductName VARCHAR(100) COLLATE UTF8_GENERAL_CI NOT NULL,
+  CatID int(11),
+  Price float not null,
+  TinyDes VARCHAR(200) COLLATE UTF8_GENERAL_CI NOT NULL,
+  FullDes Text COLLATE UTF8_GENERAL_CI NOT NULL,
+  Image varchar(255),
+  Discount float,
+  AvgRate float,
+  ToTalLike int,
+  Quantity  int,
   
-  PRIMARY KEY (`ProductID`),
-  Foreign key(`CatID`) references Category(`CatID`)
+  PRIMARY KEY (ProductID),
+  Foreign key(CatID) references Category(CatID)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 -- ----------------------------
 -- Table structure for CourseDetail
 -- ----------------------------
-DROP TABLE IF EXISTS `Account`;
-CREATE TABLE `Account` (
-  `AccountID` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `Username` varchar(100) not null UNIQUE,
-  `Password` text COLLATE utf8_general_ci NOT NULL,
-  `Name` varchar(50) COLLATE UTF8_GENERAL_CI NOT NULL,
-  `Email` varchar(150) not null UNIQUE,
-  `DOB` date,
-  `AccountType` varchar(11) not null,
+DROP TABLE IF EXISTS Account;
+CREATE TABLE Account (
+  AccountID int(11) unsigned NOT NULL AUTO_INCREMENT,
+  Username varchar(100) not null UNIQUE,
+  Password text COLLATE utf8_general_ci NOT NULL,
+  Name varchar(50) COLLATE UTF8_GENERAL_CI NOT NULL,
+  Email varchar(150) not null UNIQUE,
+  DOB date,
+  AccountType varchar(11) not null,
+  isAdmin bit,
   
-  PRIMARY KEY (`AccountID`)
+  PRIMARY KEY (AccountID)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- ----------------------------
 -- Table structure for products
 -- ----------------------------
-DROP TABLE IF EXISTS `Admin`;
-CREATE TABLE `Admin` (
-  `AdminID` int not null AUTO_INCREMENT,
-  `AdminAccountID` int not null,
-  
-  PRIMARY KEY (`AdminID`),
-  foreign key(`AdminAccountID`) references Account(`AccountID`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- ----------------------------
--- Table structure for Account
--- ----------------------------
-DROP TABLE IF EXISTS `Customer`;
-CREATE TABLE `Customer` (
-  `CustomerID` int(11) NOT NULL AUTO_INCREMENT,
-  `CustomerAccountID` int not null,
-
-  PRIMARY KEY (`CustomerID`),
-  foreign key(`CustomerAccountID`) references Account(`AccountID`)
-
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
 -- ----------------------------
 -- Table structure for Teacher
 -- ----------------------------
-DROP TABLE IF EXISTS `Orders`;
-CREATE TABLE `Orders` (
-  `OrderID` int(11) NOT NULL ,
-  `CustomerID` int(11) NOT NULL ,
-  `OrderDate` datetime,
-  `TotalPrice` float,
-  `Note` VARCHAR(100),
+DROP TABLE IF EXISTS Orders;
+CREATE TABLE Orders (
+  OrderID int(11) NOT NULL ,
+  CustomerID int(11) NOT NULL ,
+  OrderDate datetime,
+  TotalPrice float,
+  Note VARCHAR(100),
 
-  PRIMARY KEY (`OrderID`),
-  foreign key(`CustomerID`) references Customer(`CustomerID`)
+  PRIMARY KEY (OrderID),
+  foreign key(CustomerID) references Account(AccountID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- ----------------------------
 -- Table structure for Account
 -- ----------------------------
-DROP TABLE IF EXISTS `OrderDetail`;
-CREATE TABLE `OrderDetail` (
-  `OrderID` int(11) NOT NULL ,
-  `ProductID` int(11) NOT NULL ,
-  `Quantity` int,
-  `Price` float,
+DROP TABLE IF EXISTS OrderDetail;
+CREATE TABLE OrderDetail (
+  OrderID int(11) NOT NULL ,
+  ProductID int(11) NOT NULL ,
+  Quantity int,
+  Price float,
 
-  PRIMARY KEY (`OrderID`, `ProductID`),
-  foreign key(`ProductID`) references Product(`ProductID`),
-  foreign key(`OrderID`) references Orders(`OrderID`)
+  PRIMARY KEY (OrderID, ProductID),
+  foreign key(ProductID) references Product(ProductID),
+  foreign key(OrderID) references Orders(OrderID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 
 -- ----------------------------
 -- Table structure for Account
 -- ----------------------------
-DROP TABLE IF EXISTS `ReviewProduct`;
-CREATE TABLE `ReviewProduct` (
-  `CustomerID` int(11) NOT NULL ,
-  `ProductID` int(11) NOT NULL ,
-  `Rate` int,
-  `Like` bit,
-  `Comment` VARCHAR(250) COLLATE utf8_general_ci,
+DROP TABLE IF EXISTS ReviewProduct;
+CREATE TABLE ReviewProduct (
+  CustomerID int(11) NOT NULL ,
+  ProductID int(11) NOT NULL ,
+  Rate int,
+  isLike bit,
+  Comment VARCHAR(250) COLLATE utf8_general_ci,
 
-  PRIMARY KEY (`CustomerID`, `ProductID`),
-  foreign key(`ProductID`) references Product(`ProductID`),
-  foreign key(`CustomerID`) references Customer(`CustomerID`)
+  PRIMARY KEY (CustomerID, ProductID),
+  foreign key(ProductID) references Product(ProductID),
+  foreign key(CustomerID) references Account(AccountID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 SET FOREIGN_KEY_CHECKS = 1;
-
-

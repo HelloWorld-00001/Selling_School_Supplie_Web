@@ -2,7 +2,7 @@ import express from 'express';
 import {dirname} from 'path';
 import {fileURLToPath} from 'url';
 import { engine } from 'express-handlebars';
-
+import numeral from "numeral";
 import ProductRoute from "./routes/product.route.js";
 
 const app = express();
@@ -13,9 +13,16 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 app.engine('hbs', engine({
     defaultLayout:'main.hbs',
     helpers: {
-        formatFun () {
-            return 'this type function to support display in hbs file';
+        formatNumber (val) {
+            return String(numeral(val).format('0,0')) + 'đ';
+        },
+        subString (val) {
+            if (val.length > 20)
+                return String(val).substring(0, 20) + '...';
+            return String(val);
         }
+
+
     }
 }));
 app.use(express.urlencoded({
@@ -57,6 +64,12 @@ app.get('/login', (req, res) => {
 });
 app.get('/register', (req, res) => {
     res.render('vwAccount/register');
+});
+
+app.get('/something', (req, res) => {
+    res.render('vwAdmin/add', {
+        layout: 'adminLayout.hbs'
+    });
 });
 
 app.get('/err', (req, res) => {

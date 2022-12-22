@@ -8,6 +8,12 @@ export default {
             return null;
         return productList;
     },
+
+    async findById(id) {
+        const productList = await db('Product').where('ProductID', id);
+        return productList[0];
+    },
+
     addPro(entity) {
         return  db('Product').insert({
             ProductName:entity.ProductName,
@@ -27,7 +33,17 @@ export default {
         return  db('Product').where('ProductID', id).del();
     },
     patchPro(entity) {
-        return  db('products').where('ProductID', entity.ProductID).update('CatName', entity.ProductName);
+        return  db('products').where('ProductID', entity.ProductID).update({
+            CatID: entity.CatID,
+            Price: +entity.Price,
+            TinyDes: entity.TinyDes,
+            FullDes: entity.FullDes,
+            Image: entity.Image,
+            Discount: +entity.Discount,
+            AvgRate: entity.AvgRate,
+            TotalLike: entity.TotalLike,
+            Quantity:  +entity.Quantity
+        });
         //or
         //const id = entity.CatID;
         //delete entity.CatID;

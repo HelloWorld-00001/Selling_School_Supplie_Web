@@ -1,0 +1,64 @@
+
+<form method="post" id="frmInputCourse" class="container-fluid py-10">
+    <section class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+            <div class="card py-5 px-3" style="font-size:20px">
+
+                <div class="page-header-title mt-3">
+                    <h5 class="m-b-10">
+                        <h2>Products list</h2>
+                    </h5>
+                </div>
+                <div class="form-group row">
+                    <div class="form-group col-6">
+                        <label for="inputEmail4">Product Name</label>
+                        <input name="ProductName" type="text" class="form-control" id="inputEmail4" value="{{this.product.ProductName}}">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="inputPassword4">Price</label>
+                        <input name="Price" type="numeric" class="form-control" id="inputPassword4" value="{{this.product.Price}}">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="form-group col-3">
+                        <label for="inputAddress">Quantity</label>
+                        <input name="Quantity" style="width:100%" type="numeric" class="form-control" id="inputAddress"
+                        value="{{this.product.Quantity}}">
+                    </div>
+
+                    <div class="form-group col-3">
+                        <label for="inputPassword4">Discount</label>
+                        <input name="Discount" type="numeric" class="form-control" id="inputPassword4" value="{{this.product.Discount}}">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="inputEmail4">Image link</label>
+                        <input name="Image" type="text" class="form-control" id="inputEmail4" value="{{this.product.Image}}">
+                    </div>
+
+                </div>
+
+                <div class="form-group row ml-1 mr-1">
+                    <label for="inputDes">Short description</label>
+                    <input name="TinyDes" style="width:100%" type="text" class="form-control" id="inputAddress"
+                        value="{{this.product.TinyDes}}">
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputAddress2" class="ml-3">Full description</label>
+                    <div class="form-group col-12">
+                        <textarea name="FullDes" id="w3review" name="w3review" rows="4" cols="120%" >{{this.product.FullDes}}
+                    </textarea></div>
+                    </div>
+                <div class="form-group row">
+                    <div class="form-group col-6">
+                        <a name="" id="" class="btn btn-primary col-6" href="/admin" role="button">Back to list</a>
+                    </div>
+                    <div class="form-group col-6 align-right">
+                        <button type="submit" class="btn btn-primary col-6">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>

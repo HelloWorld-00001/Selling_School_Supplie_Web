@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -6,39 +5,38 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script>
-$(document).ready(function(){
-	$('[data-toggle="tooltip"]').tooltip();
-});
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>
 </head>
+
 <body>
-<div class="container-xl">
-    <div class="table-responsive">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-7"><h2>Product <b>Details</b></h2></div>
-                    <div class="col-sm-3">
-<!--                        <div class="search-box">-->
-<!--                            <i class="material-icons">&#xE8B6;</i>-->
-<!--                            <input type="text" class="form-control" placeholder="Search&hellip;">-->
-<!--                        </div>-->
+
+    <section class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+
+            <div class="card container-fluid py-5 px-5 ml-3" style="font-size:20px">
+
+                <div class="row container-fluid ">
+                    <div class="col-sm-7">
+                        <h2>Product <b>Details</b></h2>
                     </div>
-                    <div class="col-sm-2">
-                        <a name="" id="" class="btn btn-sm btn-outline-success" href="/admin/add" role="button">
-                            <i class="fa fa-plus" aria-hidden="true">Add category</i>
+
+                    <div class="justify-content-end">
+                        <a name="" id="" class="btn  btn-outline-success" href="/admin/add" role="button">
+                            <i class="fa fa-plus mr-1" aria-hidden="true"> Add category</i>
                         </a>
                     </div>
                 </div>
-            </div>
             <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name <i class="fa fa-sort"></i></th>
+                        <th>Name</i></th>
                         <th>Price</th>
                         <th>Quantity<i class="fa fa-sort"></i></th>
-                        <th>Short Description </th>
+                        <th >Short Description </th>
                         <th>Rate<i class="fa fa-sort"></i></th>
                         <th>Like<i class="fa fa-sort"></i></th>
                         <th>CatID</th>
@@ -49,22 +47,26 @@ $(document).ready(function(){
 
                     {{#each this.product}}
                     <form method="post" action="/admin/del">
-                    <tr>
-                        <td>{{ProductID}}</td>
-                        <td>{{ProductName}}</td>
-                        <td>{{Price}}</td>
-                        <td>{{Quantity}}</td>
-                        <td>{{TinyDes}}</td>
-                        <td>{{AvgRate}}</td>
-                        <td>{{TotalLike}}</td>
-                        <td>{{CatID}}</td>
-                        <td>
-                            <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <input type="hidden" class="form-control" id="CatId" name="productID" readonly value="{{ProductID}}">
-                            <button type="submit" class="btn btn-danger" >Delete<i class="material-icons">&#xE872;</i></button>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>{{ProductID}}</td>
+                            <td>{{subString ProductName}}</td>
+                            <td>{{formatNumber Price}}</td>
+                            <td>{{Quantity}}</td>
+                            <td>{{subString TinyDes}}</td>
+                            <td>{{AvgRate}}</td>
+                            <td>{{TotalLike}}</td>
+                            <td>{{CatID}}</td>
+                            <td>
+                                <a href="#" class="view" title="View" data-toggle="tooltip"><i
+                                        class="material-icons">&#xE417;</i></a>
+                                <a href="/admin/update?id={{ProductID}}" class="edit" title="Update" data-toggle="tooltip"><i
+                                        class="material-icons">&#xE254;</i></a>
+                                <input type="hidden" class="form-control" id="CatId" name="productID" readonly
+                                    value="{{ProductID}}">
+                                <button type="submit" class="btn btn-danger">Delete<i
+                                        class="material-icons">&#xE872;</i></button>
+                            </td>
+                        </tr>
                     </form>
                     {{/each}}
                 </tbody>
@@ -78,14 +80,17 @@ $(document).ready(function(){
                     <li class="page-item active"><a href="#" class="page-link">3</a></li>
                     <li class="page-item"><a href="#" class="page-link">4</a></li>
                     <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
+                    <li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a>
+                    </li>
                 </ul>
             </div>
         </div>
-    </div>  
-</div>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        </div>
+</section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
+
 </html>

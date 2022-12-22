@@ -23,7 +23,8 @@
     "handlebars-partial-file": "^1.0.0",
     "hbs": "^4.2.0",
     "knex": "^2.3.0",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "numeral": "^2.0.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
