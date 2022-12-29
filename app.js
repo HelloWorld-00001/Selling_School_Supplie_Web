@@ -25,7 +25,7 @@ app.engine('hbs', engine({
         },
 
         discountPrice (Price, Discount) {
-            return (~~Price * (100-(~~Discount))/100);
+            return (~~Price * ((100-(~~Discount))/100));
         },
 
 
