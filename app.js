@@ -4,6 +4,8 @@ import {fileURLToPath} from 'url';
 import { engine } from 'express-handlebars';
 import numeral from "numeral";
 import ProductRoute from "./routes/product.route.js";
+import productModel from './models/product.model.js';
+
 
 const app = express();
 const PORT = 3000;
@@ -20,7 +22,11 @@ app.engine('hbs', engine({
             if (val.length > 20)
                 return String(val).substring(0, 20) + '...';
             return String(val);
-        }
+        },
+
+        discountPrice (Price, Discount) {
+            return (~~Price * (100-(~~Discount))/100);
+        },
 
 
     }
@@ -56,11 +62,16 @@ app.get('/checkout', (req, res) => {
 app.get('/contact', (req, res) => {
     res.render('vwProducts/contact');
 });
-app.get('/shop', (req, res) => {
-    res.render('vwProducts/shop');
+app.get('/shop', async (req, res) => {
+    const productList = await productModel.findAll();
+    res.render('vwProducts/shop',{
+        productHome: productList
+    });
 });
 app.get('/login', (req, res) => {
-    res.render('vwAccount/login');
+   
+
+    res.render('vwAccount/login' );
 });
 app.get('/register', (req, res) => {
     res.render('vwAccount/register');

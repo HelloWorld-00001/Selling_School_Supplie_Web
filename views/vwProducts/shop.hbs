@@ -26,17 +26,26 @@
     			</div>
     		</div>
     		<div class="row">
+				 {{#each this.productHome}}
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="../imgs/product-1.jpg" alt="Colorlib Template">
-    						<span class="status">30%</span>
+    					<a href="#" class="img-prod"><img class="img-fluid" src="{{Image}}" alt="Colorlib Template">
+						{{#if Discount}}
+    						<span class="status">{{Discount}}%</span>
+						{{/if}}
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3><a href="#">Fruit Eraser</a></h3>
+    						<h3><a href="#">{{ProductName}}</a></h3>
     						<div class="d-flex">
     							<div class="pricing">
-		    						<p class="price"><span class="mr-2 price-dc">10.000VND</span><span class="price-sale">7.000VND</span></p>
+									{{#if Discount }}
+    									<p class="price"><span class="mr-2 price-dc">{{formatNumber Price}}</span><span class="price-sale">{{discountPrice Price Discounts}}</span></p>
+									
+									{{else}}
+										<p class=""><span class="mr-2 price-dc">{{formatNumber Price}}</span></p>
+
+									{{/if}}
 		    					</div>
 	    					</div>
 	    					<div class="bottom-area d-flex px-3">
@@ -55,7 +64,8 @@
     					</div>
     				</div>
     			</div>
-    			<div class="col-md-6 col-lg-3 ftco-animate">
+				 {{/each }}
+    			{{!-- <div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
     					<a href="#" class="img-prod"><img class="img-fluid" src="../imgs/product-2.jpg" alt="Colorlib Template">
     						<div class="overlay"></div>
@@ -367,7 +377,7 @@
     						</div>
     					</div>
     				</div>
-    			</div>
+    			</div> --}}
     		</div>
     		<div class="row mt-5">
           <div class="col text-center">

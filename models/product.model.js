@@ -33,7 +33,7 @@ export default {
         return  db('Product').where('ProductID', id).del();
     },
     patchPro(entity) {
-        return  db('products').where('ProductID', entity.ProductID).update({
+        return  db('Product').where('ProductID', entity.ProductID).update({
             CatID: entity.CatID,
             Price: +entity.Price,
             TinyDes: entity.TinyDes,
