@@ -12,7 +12,9 @@ import ProductRoute from "./routes/product.route.js";
 import productModel from './models/product.model.js';
 import searchRoute from "./routes/search.route.js";
 import loginRoute from "./routes/login.route.js";
-import cartRoute from "./routes/cart.route.js"; 
+import cartRoute from "./routes/cart.route.js";
+import registerRoute from "./routes/register.route.js";
+
 
 import { connectionInfo } from "./utils/db.js";
 
@@ -96,6 +98,7 @@ app.use('/admin', ProductRoute);
 app.use('/search', searchRoute);
 app.use('/login', loginRoute);
 app.use('/cart', cartRoute);
+app.use('/register', registerRoute);
 
 
 app.get('/', (req, res) => {
