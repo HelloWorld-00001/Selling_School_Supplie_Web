@@ -19,6 +19,5 @@ export default {
         } else {
             res.status(401).json({ message: "Username hoặc mật khẩu không đúng!" });
         }
-        return userInfo;
     },
 }
