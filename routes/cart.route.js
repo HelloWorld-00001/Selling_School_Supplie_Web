@@ -6,16 +6,43 @@ const router = express.Router();
 
 router.get('/', async function (req, res) {
     let cart = [];
+    var total = 0;
     const storage = req.session.cart;
-    if (storage) {
+    if (storage.length != 0) {
         cart = JSON.parse(storage);
-    }
-
-    console.log(cart);
+        for (let i = 0; i < cart.length; i++) {
+           total = total + ~~(cart[i].product.Price)*~~(cart[i].SL);
+        }
+    } 
+        
     res.render('vwProducts/cart', {
         cart: cart,
-        isNull: cart.length === 0
+        isNull: cart.length === 0,
+        total: total
     });
+});
+
+router.get('/del', async function (req, res) {
+    let cart = [];
+    const id = req.query.id;
+    const storage = req.session.cart;
+    if (storage.length != 0) {
+        cart = JSON.parse(storage);
+        for (let i = 0; i < cart.length; i++) {
+            if (cart[i].product.ProductID == id) {
+                cart.splice(i, 1);
+                req.session.cart = JSON.stringify(cart);
+                break;
+            }
+         }
+    } 
+
+
+
+
+    
+
+    res.redirect('/cart');
 });
 
 router.get('/addToCart', async function (req, res) {
@@ -46,6 +73,24 @@ router.get('/addToCart', async function (req, res) {
 
 
     res.redirect('/shop');
+});
+
+router.get('/checkout', async function (req, res) {
+    let cart = [];
+    var total = 0;
+    const storage = req.session.cart;
+    if (storage.length != 0) {
+        cart = JSON.parse(storage);
+        for (let i = 0; i < cart.length; i++) {
+           total = total + ~~(cart[i].product.Price)*~~(cart[i].SL);
+        }
+    } 
+        
+    res.render('vwProducts/checkout', {
+        cart: cart,
+        isNull: cart.length === 0,
+        total: total
+    });
 });
 
 export default router;

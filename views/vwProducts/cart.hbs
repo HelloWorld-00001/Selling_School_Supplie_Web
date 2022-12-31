@@ -1,115 +1,133 @@
+<section class="ftco-section ftco-cart">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9 ftco-animate">
+					{{#if isNull}}
+					<div class="image-prod float-center">Opp! you have no item in cart</div>
+					<div class="image-prod"><a name="" id="" class="btn btn-outline-success" href="/shop"
+							role="button">Shop now</a></div>
 
-    <section class="ftco-section ftco-cart">
-			<div class="container">
-				<div class="row">
-    			<div class="col-md-9 ftco-animate">
-    				<div class="cart-list">
-	    				<table class="table col-md-9">
-						    <thead class="thead-primary">
-						      <tr class="text-center">
-						        <th>Del</th>
-						        <th>Img</th>
-						        <th>Product name</th>
-						        <th>Price</th>
-						        <th>Quantity</th>
-						        <th>Total</th>
-						      </tr>
-						    </thead>
-						    <tbody>
-								{{#each this.cart}}
-						      <tr class="">
-						        <td class="product-remove col-1"><a href="#"><span class="ion-ios-close"></span></a></td>
-						        
-						        <td class="image-prod col-2"><div class="img" style="background-image:url({{product.Image	}});"></div></td>
-						        
-						        <td class="product-name col-3">
-						        	<h3>{{product.ProductName}}</h3>
-						        	<p>{{subString product.TinyDes}}</p>
-						        </td>
-						        
-						        <td class="price col-1">${{product.Price}}</td>
-						        
-						        <td class="quantity col-1">
-						        	<div class="input-group ">
-					             	<input type="text" name="quantity" class="quantity form-control input-number" value="{{SL}}" min="1" max="100">
-					          	</div>
-					          </td>
-						        <td class="total col-2">${{calcPrice product.Price SL}}</td>
+					{{else}}
+					<table class="table col-md-9">
+						<thead class="thead-primary">
+							<tr class="text-center">
+								<th>Del</th>
+								<th>Img</th>
+								<th>Product name</th>
+								<th>Price</th>
+								<th>Quantity</th>
+								<th>Total</th>
+							</tr>
+						</thead>
+						<tbody>
+								<script>
+									var total = 0;
+								</script>
+							{{#each this.cart}}
+
+							<tr class="">
+								<td class="product-remove col-1"><a href="/cart/del?id={{product.ProductID}}"><span class="ion-ios-close"></span></a>
+								</td>
+
+								<td class="image-prod col-2">
+									<div class="img" style="background-image:url({{product.Image}});"></div>
+								</td>
+
+								<td class="product-name col-3">
+									<h3>{{product.ProductName}}</h3>
+									<p>{{subString product.TinyDes}}</p>
+								</td>
+
+								<td class="price col-1">{{formatNumber product.Price}}</td>
+
+								<td class="quantity col-1">
+									<div class="input-group ">
+										<input type="text" name="quantity" class="quantity form-control input-number"
+											value="{{SL}}" min="1" max="100">
+									</div>
+								</td>
+								<td class="total col-2"> {{ calcPrice product.Price SL}}</td>
 								<td class="total col-4"></td>
+								<script>
+									var total = total + ~~product.Price*~~SL;
+									document.write(`<span>${total}</span>`);
 
-						      </tr><!-- END TR-->
-								{{/each}}
-						    </tbody>
-						  </table>
-					  </div>
-    			</div>
-				<div class="col-lg-3 	 cart-wrap ftco-animate">
-    				<div class="cart-total mb-3">
-    					<h3>Cart Totals</h3>
-    					<p class="d-flex">
-    						<span>Subtotal</span>
-    						{{!-- <span>$20.60</span> --}}
-							<span>{{Price}}</span>
-    					</p>
-    					<p class="d-flex">
-    						<span>Delivery</span>
-    						<span>$0.00</span>
-    					</p>
-    					<p class="d-flex">
-    						<span>Discount</span>
-    						<span>$3.00</span>
-    					</p>
-    					<hr>
-    					<p class="d-flex total-price">
-    						<span>Total</span>
-    						<span>$17.60</span>
-    					</p>
-    				</div>
-    				<p><a href="/checkout" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
-    			</div>
-    		</div>
-    		
+								</script>
+							</tr><!-- END TR-->
+							{{/each}}
+
+						</tbody>
+					</table>
+					{{/if}}
+
 			</div>
-		</section>
+			<div class="col-lg-3 	 cart-wrap ftco-animate">
+				<div class="cart-total mb-3">
+					<h3>Cart Totals</h3>
+					<p class="d-flex">
+						<span>Subtotal</span>
+						<span>{{formatNumber this.total}}</span>
+				
+					</p>
+					<p class="d-flex">
+						<span>Delivery</span>
+						<span>$0.00</span>
+					</p>
+					<p class="d-flex">
+						<span>Discount</span>
+						<span>$0.00</span>
+					</p>
+					<hr>
+					<p class="d-flex total-price">
+						<span>Total</span>
+						<span>{{formatNumber this.total}}</span>
+					</p>
+				</div>
+				<p><a href="/cart/checkout" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+			</div>
+		</div>
 
-		<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
-    </section>
-    
-  
+	</div>
+</section>
 
-  <script>
-		$(document).ready(function(){
+<section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
+</section>
 
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
 
-		          
-		            // Increment
-		        
-		    });
 
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-		    
+<script>
+	$(document).ready(function () {
+
+		var quantitiy = 0;
+		$('.quantity-right-plus').click(function (e) {
+
+			// Stop acting like a button
+			e.preventDefault();
+			// Get the field name
+			var quantity = parseInt($('#quantity').val());
+
+			// If is not undefined
+
+			$('#quantity').val(quantity + 1);
+
+
+			// Increment
+
 		});
-	</script>
+
+		$('.quantity-left-minus').click(function (e) {
+			// Stop acting like a button
+			e.preventDefault();
+			// Get the field name
+			var quantity = parseInt($('#quantity').val());
+
+			// If is not undefined
+
+			// Increment
+			if (quantity > 0) {
+				$('#quantity').val(quantity - 1);
+			}
+		});
+
+	});
+</script>
