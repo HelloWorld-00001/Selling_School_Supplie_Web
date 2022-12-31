@@ -1,25 +1,66 @@
-<div class="inner-form">
-          <div class="input-field first-wrap">
-            <div class="svg-wrapper">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-              </svg>
-            </div>
-            <input id="search" type="text" placeholder="What are you looking for?" />
-          </div>
-          <div class="input-field second-wrap">
-            <button class="btn-search" type="button">SEARCH BY NAME</button>
-          </div>
-          <div class="input-field first-wrap">
-            <div class="svg-wrapper">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
-              </svg>
-            </div>
-            <input id="search" type="text" placeholder="Product id: " />
-          </div>
-          <div class="input-field second-wrap">
-            <button class="btn-search" type="button">SEARCH BY ID</button>
-          </div>
-</div>
 
+	<div class="container">
+
+		<div class="row  mt-3">
+
+
+			<div class="col-3 mr-3">
+				<div class="card" style="width: 18rem;">
+					<div class="card-header">
+						Sort by
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item"><a href="/search"><i class="fa fa-angle-double-right" aria-hidden="true"></i><i class="fa fa-angle-double-right" aria-hidden="true"></i> Default</a></li>
+						<li class="list-group-item"><a href="/search/price?Name={{this.name}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i><i class="fa fa-angle-double-right" aria-hidden="true"></i> Price <i class="fa fa-money float-right" aria-hidden="true"></i></a></li>
+						<li class="list-group-item"><a href="/search/rate?Name={{this.name}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i><i class="fa fa-angle-double-right" aria-hidden="true"></i> Rate <i class="fa fa-star-o float-right" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+			</div>
+			{{#if isNull}}
+			<div> Không tìm thấy sản phẩm</div>
+			{{else}}
+				{{#each this.product}}
+			<div class="col-6 col-lg-3 ftco-animate">
+				<div class="product">
+					<a href="#" class="img-prod"><img class="img-fluid" src="{{Image}}" alt="Colorlib Template">
+						{{#if Discount}}
+						<span class="status">{{Discount}}%</span>
+						{{/if}}
+						<div class="overlay"></div>
+					</a>
+					<div class="text py-3 pb-4 px-3 text-center">
+						<h3><a href="#">{{ProductName}}</a></h3>
+						<div class="d-flex">
+							<div class="pricing">
+								{{#if Discount }}
+								<p class="price"><span class="mr-2 price-dc">{{formatNumber Price}}</span><span
+										class="price-sale">{{discountPrice Price Discounts}}</span></p>
+
+								{{else}}
+								<p class=""><span class="mr-2 price-dc">{{formatNumber Price}}</span></p>
+
+								{{/if}}
+							</div>
+						</div>
+						<div class="bottom-area d-flex px-3">
+							<div class="m-auto d-flex">
+								<a href="#"
+									class="add-to-cart d-flex justify-content-center align-items-center text-center">
+									<span><i class="ion-ios-menu"></i></span>
+								</a>
+								<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+									<span><i class="ion-ios-cart"></i></span>
+								</a>
+								<a href="#" class="heart d-flex justify-content-center align-items-center ">
+									<span><i class="ion-ios-heart"></i></span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{{/each }}
+			{{/if}}
+			
+		</div>
+	</div>
