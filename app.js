@@ -3,8 +3,12 @@ import {dirname} from 'path';
 import {fileURLToPath} from 'url';
 import { engine } from 'express-handlebars';
 import numeral from "numeral";
+import session from "express-session";
+import hbs_sections from "express-handlebars-sections";
+
 import ProductRoute from "./routes/product.route.js";
 import productModel from './models/product.model.js';
+import searchRoute from "./routes/search.route.js";
 
 
 const app = express();
@@ -14,7 +18,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.engine('hbs', engine({
     defaultLayout:'main.hbs',
-    helpers: {
+    helpers: {           
+        section: hbs_sections(),
         formatNumber (val) {
             return String(numeral(val).format('0,0')) + 'đ';
         },
@@ -42,6 +47,7 @@ app.set('views', './views');
 //ket noi voi folder public de dung css
 app.use(express.static(__dirname + '/public'));
 app.use('/admin', ProductRoute);
+app.use('/search', searchRoute);
 
 
 app.get('/', (req, res) => {

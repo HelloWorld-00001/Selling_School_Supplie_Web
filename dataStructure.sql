@@ -118,4 +118,5 @@ CREATE TABLE ReviewProduct (
   foreign key(CustomerID) references Account(AccountID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+ALTER TABLE Product ADD FULLTEXT(ProductName);
 SET FOREIGN_KEY_CHECKS = 1;

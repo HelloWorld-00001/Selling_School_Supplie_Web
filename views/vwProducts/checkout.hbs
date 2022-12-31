@@ -1,150 +1,186 @@
-<section class="ftco-section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-xl-7 ftco-animate">
-						<form action="#" class="billing-form">
-							<h3 class="mb-4 billing-heading">Billing Details</h3>
-	          	<div class="row align-items-end">
-	          		<div class="col-md-6">
-	                <div class="form-group">
-	                	<label for="fullname">Full Name</label>
-	                  <input type="text" class="form-control" placeholder="">
-	                </div>
-	              </div>
-	              <div class="col-md-6">
-	                <div class="form-group">
-	                	<label for="lastname">Email</label>
-	                  <input type="text" class="form-control" placeholder="a@example.com">
-	                </div>
-                </div>
-                <div class="w-100"></div>
-		            <div class="col-md-12">
-		            	<div class="form-group">
-		            		<label for="country">Country</label>
-		            		<div class="select-wrap">
-		                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-		                  <select name="" id="" class="form-control">
-		                  	<option value="">VietNam</option>
-		                    <option value="">Italy</option>
-		                    <option value="">Philippines</option>
-		                    <option value="">South Korea</option>
-		                    <option value="">France</option>
-		                    <option value="">Japan</option>
-		                  </select>
-		                </div>
-		            	</div>
-		            </div>
-		            <div class="w-100"></div>
-		            <div class="col-md-6">
-		            	<div class="form-group">
-	                	<label for="streetaddress">Address</label>
-	                  <input type="text" class="form-control" placeholder="House number and street name">
-	                </div>
-		            </div>
-		            <div class="col-md-6">
-		            	<div class="form-group">
-							<label for="phone">Phone Number</label>
-	                  <input type="text" class="form-control" placeholder="0275757575">
-	                </div>
-		            </div>
-		            <div class="w-100"></div>
-		            <div class="col-md-6">
-		            	<div class="form-group">
-	                	<label for="towncity">City</label>
-	                  <input type="text" class="form-control" placeholder="Ho Chi Minh">
-	                </div>
-		            </div>
-		            <div class="col-md-6">
-		            	<div class="form-group">
-		            		<label for="postcodezip">Postcode / ZIP *</label>
-	                  <input type="text" class="form-control" placeholder="10001">
-	                </div>
-		            </div>
-		            <div class="w-100"></div>
-		            <div class="col-md-6">
-	                <div class="form-group">
-	                </div>
-	              </div>
-	              <div class="col-md-6">
-	                <div class="form-group">
+{{! firebase npm }}
 
-	                </div>
-                </div>
-                <div class="w-100"></div>
-                <div class="col-md-12">
-                	<div class="form-group mt-4">
-										<div class="radio">
-										  <label><input type="radio" name="optradio"> Shipping address same as billing</label>
-										</div>
-									</div>
-                </div>
-	            </div>
-	          </form><!-- END -->
+{{#section "css"}}
+<style>
+	.borderCus {
+		border-radius: 3px;
+		border: 2px solid #82AE46;
+	}
+
+	.alertFill {
+		color: #f9660a;
+		
+		font-family: "Helvetica", "Helvet";
+		font-weight: bold;
+	}
+
+</style>
+
+{{/section}}
+
+<div class="container">
+<form method="post" action="" class="billing-form" id="frmCheckOut">
+
+	<div class="row">
+		<div class="ftco-animate col-5">
+				<h3 class="mb-4 billing-heading ">Please enter your information</h3>
+				<div class="form-group col-md-12">
+					<label for="fullname">Full Name</label>
+					<label id="labelName" style="visibility:hidden" class="float-right alertFill">Please fill out the name</label>
+					<input id="Name" type="text" class="form-control" placeholder="" />
+				</div>
+				<div class="form-group col-md-12">
+					<label for="lastname">Email</label>
+					<label id="labelEmail" style="visibility:hidden" class="float-right alertFill">Please fill out the Email</label>
+					<input id="Email" type="text" class="form-control" placeholder="a@example.com" />
+				</div>
+				<div class="w-100"></div>
+				<div class="form-group col-md-12">
+					<label for="Address">Address</label>
+					<label id="labelAddress" style="visibility:hidden" class="float-right alertFill">Please fill out the address</label>
+					<input id="Address" type="text" class="form-control" placeholder="Your address" />
+				</div>
+				<div class="row ml-1">
+					<div class="col-md-4">
+						<label for="towncity">Country</label>
+						<input name="Country" type="text" class="form-control" value="Việt Nam" readonly />
 					</div>
-					<div class="col-xl-5">
-	          <div class="row mt-5 pt-3">
-	          	<div class="col-md-12 d-flex mb-5">
-	          		<div class="cart-detail cart-total p-3 p-md-4">
-	          			<h3 class="billing-heading mb-4">Cart Total</h3>
-	          			<p class="d-flex">
-		    						<span>Product 1</span>
-		    						<span>$20.60</span>
-		    					</p>
-								<p class="d-flex">
-		    						<span>Product 2</span>
-		    						<span>$0.00</span>
-		    					</p>
-		    					<p class="d-flex">
-		    						<span>Delivery</span>
-		    						<span>$0.00</span>
-		    					</p>
-		    					<p class="d-flex">
-		    						<span>Discount</span>
-		    						<span>$3.00</span>
-		    					</p>
-		    					<hr>
-		    					<p class="d-flex total-price">
-		    						<span>Total</span>
-		    						<span>$17.60</span>
-		    					</p>
-								</div>
-	          	</div>
-	          	<div class="col-md-12">
-	          		<div class="cart-detail p-3 p-md-4">
-	          			<h3 class="billing-heading mb-4">Payment Method</h3>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2"> Direct Bank Tranfer</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2">Pay in cash</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="radio">
-											   <label><input type="radio" name="optradio" class="mr-2"> Momo</label>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="checkbox">
-											   <label><input type="checkbox" value="" class="mr-2"> I have read and accept the terms and conditions</label>
-											</div>
-										</div>
-									</div>
-									<p><a href="#"class="btn btn-primary py-3 px-4">Place order</a></p>
-								</div>
-	          	</div>
-	          </div>
-          </div> <!-- .col-md-8 -->
-        </div>
-      </div>
-    </section> <!-- .section -->
+					<div class="col-md-8">
+						<label for="phone">Phone Number</label>
+						<label id="labelPhone" style="visibility:hidden" class="float-right alertFill">Please fill out the phone</label>
+						<input id="Phone" type="text" class="form-control" placeholder="0275757575" />
+					</div>
+
+				</div>
+
+				<div class="col-md-12">
+					<div class="form-group mt-4">
+						<div class="radio">
+							<label><input type="radio" name="optradio" />
+								Shipping address same as billing</label>
+						</div>
+					</div>
+				</div>
+
+		</div>
+		<div class="col-3">
+			<div class="cart-detail cart-total p-3 p-md-4">
+				<h3 class="billing-heading mb-4">Cart Total</h3>
+				<p class="d-flex">
+					<span>Product 1</span>
+					<span>$20.60</span>
+				</p>
+				<p class="d-flex">
+					<span>Product 2</span>
+					<span>$0.00</span>
+				</p>
+				<p class="d-flex">
+					<span>Delivery</span>
+					<span>$0.00</span>
+				</p>
+				<p class="d-flex">
+					<span>Discount</span>
+					<span>$3.00</span>
+				</p>
+				<hr />
+				<p class="d-flex total-price">
+					<span>Total</span>
+					<span>$17.60</span>
+				</p>
+
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="cart-detail p-3 p-md-4 borderCus">
+				<h3 class="billing-heading mb-4">Payment Method</h3>
+				<div class="form-group">
+					<div class="col-md-12">
+						<div class="radio">
+							<label><input type="radio" name="optradio" class="mr-2" />
+								Direct Bank Tranfer</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-12">
+						<div class="radio">
+							<label><input type="radio" name="optradio" class="mr-2" />Pay in
+								cash</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-12">
+						<div class="radio">
+							<label><input type="radio" name="optradio" class="mr-2" />
+								Momo</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-md-12">
+						<div class="checkbox">
+							<label><input type="checkbox" value="" class="mr-2" />
+								I have read and accept the terms and conditions</label>
+						</div>
+					</div>
+				</div>
+  			<button type="submit" class="btn btn-success"> Send </button>
+			</div>
+		</div>
+
+	</div>
+</form><!-- END -->
+
+</div>
+
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+<script>
+	function checkEmpty(property) {
+		if (property.length === 0) { return false; }
+		return true;
+	} 
+	function checkEmail(email) {
+		var filter = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; 
+			if (email.length === 0) {
+				return false;
+			} 
+			if (filter.test(email) === false) { return false; } 
+			return true;
+	} 
+	
+	$('#frmCheckOut').on('submit', function (e) {
+		const Name = document.querySelector('#Name').value;
+		const Address = document.querySelector('#Address').value;
+		const Phone = document.querySelector('#Phone').value;
+		const email = document.querySelector('#Email').value; var check = true; 
+		if (checkEmpty(Name) === false) {
+			check = false;
+			document.querySelector('#labelName').style.visibility = 'visible';
+		} else
+			document.querySelector('#labelName').style.visibility = 'invisible';
+			if (checkEmpty(Address) === false) {
+			check = false;
+			document.querySelector('#labelAddress').style.visibility = 'visible';
+		} else
+			document.querySelector('#labelAddress').style.visibility = 'invisible';
+			if (checkEmpty(Phone) === false) {
+			check = false;
+			document.querySelector('#labelPhone').style.visibility = 'visible';
+		} else
+			document.querySelector('#labelPhone').style.visibility = 'invisible';
+			if (checkEmail(email) === false) {
+			check = false;
+			document.querySelector('#labelEmail').style.visibility = 'visible';
+		} 
+
+		if (check === false) {
+			e.preventDefault();
+          alert('Please fill all information');
+		}
+	});
+
+		
+</script>
