@@ -9,6 +9,7 @@ import hbs_sections from "express-handlebars-sections";
 import ProductRoute from "./routes/product.route.js";
 import productModel from './models/product.model.js';
 import searchRoute from "./routes/search.route.js";
+import loginRoute from "./routes/login.route.js";
 
 
 const app = express();
@@ -48,6 +49,7 @@ app.set('views', './views');
 app.use(express.static(__dirname + '/public'));
 app.use('/admin', ProductRoute);
 app.use('/search', searchRoute);
+app.use('/login', loginRoute);
 
 
 app.get('/', (req, res) => {
