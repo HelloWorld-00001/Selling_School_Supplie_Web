@@ -93,11 +93,35 @@
           </li>
           <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
           <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
-          <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
           <li class="nav-item cta cta-colored"><a href="/cart" class="nav-link"><span
-                class="icon-shopping_cart"></span>[0]</a></li>
-
+                class="icon-shopping_cart"></span>
+                {{#if cart}}
+                *
+                {{else}}
+                [0]
+                {{/if}}
+                </a></li>
         </ul>
+        {{#if auth}}
+          <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Hi, {{authUser.Name}}
+              </button>
+              <div class="dropdown-menu">
+                  {{#if authUser.isAdmin}}
+                      <a class="dropdown-item" href="/admin">switch to admin</a>
+                  {{/if}}
+            
+                  <a class="dropdown-item" href="/account/profile">Profile</a>
+                  <a class="dropdown-item" href="/cart">cart</a>
+                  <form id="frmLogout" action="/account/logout" method="post">
+                      <a class="dropdown-item" href="javascript: $('#frmLogout').submit();">Logout</a>
+                  </form>
+              </div>
+          </div>
+      {{else}}
+          <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="/account/login">Login</a>
+      {{/if}}
       </div>
 
     </div>

@@ -4,6 +4,10 @@ import {fileURLToPath} from 'url';
 import { engine } from 'express-handlebars';
 import numeral from "numeral";
 import ProductRoute from "./routes/product.route.js";
+import searchRoute from "./routes/search.route.js";
+import accountRoute from "./routes/register.route.js";
+import cartRoute from "./routes/cart.route.js";
+
 
 
 const app = express();
@@ -37,6 +41,10 @@ app.set('views', './views');
 //ket noi voi folder public de dung css
 app.use(express.static(__dirname + '/public'));
 app.use('/admin', ProductRoute);
+app.use('/search', searchRoute);
+app.use('/account', accountRoute);
+app.use('/cart', cartRoute);
+
 
 
 app.get('/', (req, res) => {

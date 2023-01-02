@@ -58,8 +58,8 @@ DROP TABLE IF EXISTS Account;
 CREATE TABLE Account (
   AccountID int(11) unsigned NOT NULL AUTO_INCREMENT,
   Username varchar(100) not null UNIQUE,
-  Password text COLLATE utf8_general_ci NOT NULL,
-  Name varchar(50) COLLATE UTF8_GENERAL_CI NOT NULL,
+  `Password` text COLLATE utf8_general_ci NOT NULL,
+  `Name` varchar(50) COLLATE UTF8_GENERAL_CI NOT NULL,
   Email varchar(150) not null UNIQUE,
   DOB date,
   AccountType varchar(11) not null,

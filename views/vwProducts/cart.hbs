@@ -83,7 +83,11 @@
 						<span>{{formatNumber this.total}}</span>
 					</p>
 				</div>
+				{{#if auth}}
 				<p><a href="/cart/checkout" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+				{{else}}
+				<p><a href="/account/login" class="btn btn-primary py-3 px-4">Please login to checkout</a></p>
+				{{/if}}
 			</div>
 		</div>
 

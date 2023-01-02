@@ -19,6 +19,8 @@
   "homepage": "https://github.com/HelloWorld-00001/Selling_School_Supplie_Web#readme",
   "dependencies": {
     "@types/numeral": "^2.0.2",
+    "bcryptjs": "^2.4.3",
+    "deep-email-validator": "^0.1.21",
     "express": "^4.18.2",
     "express-handlebars": "^6.0.6",
     "express-handlebars-sections": "^1.0.1",
@@ -27,7 +29,10 @@
     "handlebars-partial-file": "^1.0.0",
     "hbs": "^4.2.0",
     "knex": "^2.3.0",
+    "moment": "^2.29.4",
     "mysql2": "^2.3.3",
+    "nodemailer": "^6.8.0",
+    "nodemailer-express-handlebars": "^6.0.0",
     "numeral": "^2.0.6"
   },
   "devDependencies": {
