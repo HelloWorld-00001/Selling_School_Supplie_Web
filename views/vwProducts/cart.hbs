@@ -1,3 +1,19 @@
+
+{{#section 'css'}}
+<style>
+	.alertFill {
+		color: #f9660a;
+		font-family: "Helvetica", "Helvet";
+		font-weight: bold;
+	}
+
+	.borderCus {
+		border-radius: 3px;
+		border: 2px solid #82AE46;
+	}
+</style>
+
+{{/section}}
 <section class="ftco-section ftco-cart">
 	<div class="container">
 		<div class="row">
@@ -61,8 +77,8 @@
 					{{/if}}
 
 			</div>
-			<div class="col-lg-3 	 cart-wrap ftco-animate">
-				<div class="cart-total mb-3">
+			<div class="col-lg-3 cart-wrap ftco-animate">
+				<div class="cart-total mb-3 borderCus">
 					<h3>Cart Totals</h3>
 					<p class="d-flex">
 						<span>Subtotal</span>
@@ -78,16 +94,19 @@
 						<span>$0.00</span>
 					</p>
 					<hr>
-					<p class="d-flex total-price">
-						<span>Total</span>
+					<p class="d-flex total-price ">
+						<span class="alertFill">Total</span>
 						<span>{{formatNumber this.total}}</span>
 					</p>
+
+					{{#if auth}}
+					<a href="/cart/checkout" class="btn btn-primary py-3 px-4">Proceed to Checkout</a>
+					{{else}}
+					<a href="/account/login" class="btn btn-primary py-3 px-4">Please login to checkout</a>
+					{{/if}}
+		
 				</div>
-				{{#if auth}}
-				<p><a href="/cart/checkout" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
-				{{else}}
-				<p><a href="/account/login" class="btn btn-primary py-3 px-4">Please login to checkout</a></p>
-				{{/if}}
+				
 			</div>
 		</div>
 
