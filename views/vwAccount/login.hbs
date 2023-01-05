@@ -1,3 +1,13 @@
+  {{#section 'css'}}
+<style>
+  .cus {
+    color: rgb(252, 82, 9);
+    font-weight: bold;
+    font-family: monospace;
+  }
+</style>
+  {{/section}}
+  
   <section class="ftco-section">
   <div class="content">
     <div class="container">
@@ -11,6 +21,9 @@
               <div class="mb-4">
               <h3>Sign In</h3>
               <p class="mb-4">Welcome to our school supplies website</p>
+              {{#if err_message}}
+              <p class="cus">Incorrect username or password</p>
+              {{/if}}
             </div>
             <form action="/account/login" method="post">
               <div class="form-group first">

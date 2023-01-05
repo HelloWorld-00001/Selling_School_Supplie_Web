@@ -98,32 +98,35 @@ router.get('/is-true-otp', async function (req, res) {
   res.json(false);
 });
 
-//login
-router.get('/login', async function (req, res) {
-  res.render('vwAccount/login', {layout: false});
-});
 
 router.post('/login', async function (req, res) {
   const user = await registerModel.findByUsername(req.body.Username);
   if (user === null) {
     return res.render('vwAccount/login', {
-      layout: false,
       err_message: 'Invalid username or password.'
     });
   }
 
 
+  const ret = bcrypt.compareSync(req.body.Password, user.Password);
+  if (ret === false) {
+    return res.render('vwAccount/login', {
+      err_message: 'Invalid username or password.'
+    });
+  }
+  delete user.Password;
+
   user.DOB = moment(user.DOB, 'YYYY-MM-DD').format('DD/MM/YYYY');
   req.session.auth=true;
   req.session.authUser=user;
 
+  req.session.authUser.isAdmin = (req.session.authUser.isAdmin.lastIndexOf(1) !== -1);
   const url = req.session.retUrl || '/';
   res.redirect(url);
 });
 
 //logout
 router.post('/logout', async function(req, res){
-  console.log(req.session.wishList);
   req.session.auth=false;
   req.session.authUser=null;
 
@@ -155,3 +158,4 @@ router.get('/profile', auth, async function(req, res) {
 })
 
 export default router;
+//$2a$10$zKrIRVL0h9eBKUSxMDhzWOxOsNgKz83cetwYcBfh9qbnCPOSH3BVi

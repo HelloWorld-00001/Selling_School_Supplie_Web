@@ -36,12 +36,6 @@ router.get('/del', async function (req, res) {
             }
          }
     } 
-
-
-
-
-    
-
     res.redirect('/cart');
 });
 
@@ -51,6 +45,7 @@ router.get('/addToCart', async function (req, res) {
     let flag = true;
     let storage = req.session.cart;
     const ProID = req.query.id;
+    const username = req.query.user;
     // Lay wl tu local storeage
     if (storage.length != 0) {
         cart = JSON.parse(storage); 
@@ -59,16 +54,17 @@ router.get('/addToCart', async function (req, res) {
     let product = await productModel.findById(ProID);
    
     for (var i = 0; i < cart.length; i++) {
-        if (cart[i].product.ProductID == ProID) {
+        if (cart[i].product.ProductID == ProID && cart[i].user === username) {
             cart[i].SL = cart[i].SL + 1;
             flag = false;
             break;
         }
     }
     if(flag) {
-        cart.push({product, SL:1});
+        cart.push({product, SL:1, user: username});
     }
 
+    console.log(cart);
     req.session.cart = JSON.stringify(cart);
 
 

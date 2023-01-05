@@ -94,6 +94,11 @@ app.use(async function (req, res, next) {
 // su dung handlebars
 app.set('view engine', 'hbs');
 app.set('views', './views');
+
+app.get('/err', function (req, res) {
+  throw new Error('Something broke!!!');
+})
+
 //ket noi voi folder public de dung css
 app.use(express.static(__dirname + '/public'));
 app.use('/admin', ProductRoute);
@@ -103,9 +108,19 @@ app.use('/cart', cartRoute);
 app.use('/', mainRoute);
 
 
-app.get('/err', (req, res) => {
-    res.render('notFound', {layout: false});
+app.use(function (req, res, next) {
+  res.render('notFound', { layout: false });
 });
+
+app.use(function (err, req, res, next) {
+  // console.error(err.stack);
+  res.status(500).render('500', {
+    stack: err.stack,
+    layout: false
+  });
+});
+
+
 app.listen(PORT,() => {
     console.log(`Example app listening on port ${PORT}`)
 });
