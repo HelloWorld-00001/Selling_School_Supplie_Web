@@ -10,23 +10,31 @@
     <title>OTP</title>
 </head>
 <body>
-
-    <div class="card" style="text-align: center; position: relative; width: 80vh; min-height: 55vh; border-radius: 20px;">
+  
+    <div class="card" style="text-align: center; position: relative; width: 195vh; min-height: 55vh; border-radius: 20px;">
         <div class="d-flex justify-content-center align-items-center" style="min-height: 55vh">
         <form method="post" id="frmOTP">
-            <h2 class="display-4">Verify Your Email</h2>
+          
+            <h2 class="display-4">Verify Your Email !</h2>
             <h4 class="display-6" style="color:grey">We sent OTP to your email</h4>
+            <h4 class="display-6" style="color:grey">Please enter the 6-digit verification code that was sent</h4>
+            <h4 class="display-6" style="color:grey">The code is valid for 30 minutes</h4>
             <div class="d-flex justify-content-center">
-                <img src="../imgs/message.png" width="30%">
+                <center>
+                <img src="../imgs/message.png" width="80%">
+                </center>
             </div>
         
             <div class="form-group mx-4"> 
+                <h4 class="display-6" style="color:grey">Verification code</h4>
                 <input type="text" class="form-control" name="" id="txtOTP" aria-describedby="helpId" placeholder="Enter 6 digits code">
             </div>
             <div class="form-group mx-4 d-flex">
                 <button type="submit" class="btn btn-primary w-100" id="btn_sendOTP">
                   SEND
                 </button>
+                <div>&nbsp;</div>
+                <button class="btn btn-primary w-100" type="submit">CONTINUE</button>
                 <div>&nbsp;</div>
                 <a href="/account/register" class="btn btn-primary w-100" role="button" id="btn_cancel">
                     CANCEL
