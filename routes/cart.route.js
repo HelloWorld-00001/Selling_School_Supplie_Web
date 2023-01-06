@@ -98,4 +98,27 @@ router.get('/checkout', async function (req, res) {
     });
 });
 
+
+router.post('/checkout', async function (req, res) {
+    let cart = [];
+    const id = req.query.id;
+    const storage = req.session.cart;
+    const user = req.session.authUser.Username;
+
+    if (storage.length != 0) {
+        cart = JSON.parse(storage);
+        for (let i = 0; i < cart.length; i++) {
+            if (cart[i].user === user) {
+                cart.splice(i, 1);
+                i = i - 1;
+            }
+         }
+        req.session.cart = JSON.stringify(cart);
+
+    } 
+    res.render('vwProducts/successful', {
+        layout: false
+    });
+});
+
 export default router;

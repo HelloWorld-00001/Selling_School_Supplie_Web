@@ -97,6 +97,7 @@
           </li>
           <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
           <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+          {{#if auth}}
           <li class="nav-item cta cta-colored"><a href="/cart" class="nav-link"><span
                 class="icon-shopping_cart"></span>
                 {{#if cart}}
@@ -105,6 +106,11 @@
                 [0]
                 {{/if}}
                 </a></li>
+          {{else}}
+          <li class="nav-item cta cta-colored"><a href="/account/login" class="nav-link"><span
+                class="icon-shopping_cart"></span>
+                </a></li>
+          {{/if}}
         </ul>
         {{#if auth}}
           <div class="dropdown">

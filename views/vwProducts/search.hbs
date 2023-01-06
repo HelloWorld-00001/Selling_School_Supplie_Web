@@ -1,27 +1,37 @@
 
 	<div class="container">
-
-		<div class="row  mt-3">
-
-
-			<div class="col-3 mr-3">
-				<div class="card" style="width: 18rem;">
-					<div class="card-header">
-						Sort by
-					</div>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item"><a href="/search"><i class="fa fa-angle-double-right" aria-hidden="true"></i><i class="fa fa-angle-double-right" aria-hidden="true"></i> Default</a></li>
-						<li class="list-group-item"><a href="/search/price?Name={{this.name}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i><i class="fa fa-angle-double-right" aria-hidden="true"></i> Price <i class="fa fa-money float-right" aria-hidden="true"></i></a></li>
-						<li class="list-group-item"><a href="/search/rate?Name={{this.name}}"><i class="fa fa-angle-double-right" aria-hidden="true"></i><i class="fa fa-angle-double-right" aria-hidden="true"></i> Rate <i class="fa fa-star-o float-right" aria-hidden="true"></i></a></li>
-					</ul>
-				</div>
-			</div>
-			{{#if isNull}}
+		{{#if isNull}}
 			<div> Không tìm thấy sản phẩm</div>
-			{{else}}
+		{{else}}
+		<div class="float-center mb-5 row">
+			 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Filter</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Default<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/search/price?Name={{this.name}}">Price</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/search/rate?Name={{this.name}}">Rating</a>
+                </li>
+                </ul>
+            </div>
+            </nav>
+			</div>
+		<div class="row  mt-3">
+			
+        
+
 				{{#each this.product}}
-			<div class="col-6 col-lg-3 ftco-animate">
-				<div class="product">
+			<div class="col-6 col-lg-3 ftco-animate ">
+				
+				<div class="product card h-100">
 					<a href="#" class="img-prod"><img class="img-fluid" src="{{Image}}" alt="Colorlib Template">
 						{{#if Discount}}
 						<span class="status">{{Discount}}%</span>
