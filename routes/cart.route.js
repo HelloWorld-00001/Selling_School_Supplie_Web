@@ -4,21 +4,36 @@ import productModel from '../models/product.model.js';
 const router = express.Router();
 
 
-router.get('/', async function (req, res) {
+function cartInfo(req) {
     let cart = [];
+    let cartFinal = [];
+    const user = req.session.authUser.Username;
     var total = 0;
     const storage = req.session.cart;
     if (storage.length != 0) {
         cart = JSON.parse(storage);
         for (let i = 0; i < cart.length; i++) {
-           total = total + ~~(cart[i].product.Price)*~~(cart[i].SL);
+            if (cart[i].user === user) {
+                total = total + ~~(cart[i].product.Price)*~~(cart[i].SL);
+                cartFinal.push(cart[i]);
+            }
         }
     } 
+
+    const rel = { cart: cartFinal, total: total, isNull: cartFinal.length === 0}
+    return rel;
+}
+
+
+
+router.get('/', async function (req, res) {
+   
+    const rel = cartInfo(req);
         
     res.render('vwProducts/cart', {
-        cart: cart,
-        isNull: cart.length === 0,
-        total: total
+        cart: rel.cart,
+        isNull: rel.isNull,
+        total: rel.total
     });
 });
 
@@ -26,10 +41,12 @@ router.get('/del', async function (req, res) {
     let cart = [];
     const id = req.query.id;
     const storage = req.session.cart;
+    const user = req.session.authUser.Username;
+
     if (storage.length != 0) {
         cart = JSON.parse(storage);
         for (let i = 0; i < cart.length; i++) {
-            if (cart[i].product.ProductID == id) {
+            if (cart[i].product.ProductID == id && cart[i].user === user) {
                 cart.splice(i, 1);
                 req.session.cart = JSON.stringify(cart);
                 break;
@@ -45,7 +62,8 @@ router.get('/addToCart', async function (req, res) {
     let flag = true;
     let storage = req.session.cart;
     const ProID = req.query.id;
-    const username = req.query.user;
+    const user = req.session.authUser.Username;
+    console.log(user);
     // Lay wl tu local storeage
     if (storage.length != 0) {
         cart = JSON.parse(storage); 
@@ -54,17 +72,16 @@ router.get('/addToCart', async function (req, res) {
     let product = await productModel.findById(ProID);
    
     for (var i = 0; i < cart.length; i++) {
-        if (cart[i].product.ProductID == ProID && cart[i].user === username) {
+        if (cart[i].product.ProductID == ProID && cart[i].user === user) {
             cart[i].SL = cart[i].SL + 1;
             flag = false;
             break;
         }
     }
     if(flag) {
-        cart.push({product, SL:1, user: username});
+        cart.push({product, SL:1, user: user});
     }
 
-    console.log(cart);
     req.session.cart = JSON.stringify(cart);
 
 
@@ -72,20 +89,12 @@ router.get('/addToCart', async function (req, res) {
 });
 
 router.get('/checkout', async function (req, res) {
-    let cart = [];
-    var total = 0;
-    const storage = req.session.cart;
-    if (storage.length != 0) {
-        cart = JSON.parse(storage);
-        for (let i = 0; i < cart.length; i++) {
-           total = total + ~~(cart[i].product.Price)*~~(cart[i].SL);
-        }
-    } 
+    const rel = cartInfo(req);
         
     res.render('vwProducts/checkout', {
-        cart: cart,
-        isNull: cart.length === 0,
-        total: total
+        cart: rel.cart,
+        isNull: rel.isNull,
+        total: rel.total
     });
 });
 
