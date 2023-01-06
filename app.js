@@ -87,7 +87,7 @@ app.use(async function (req, res, next) {
     res.locals.auth = req.session.auth;
     res.locals.authUser = req.session.authUser;
     res.locals.cart = req.session.cart;
-  
+
     next();
   });
 
@@ -112,13 +112,13 @@ app.use(function (req, res, next) {
   res.render('notFound', { layout: false });
 });
 
-app.use(function (err, req, res, next) {
-  // console.error(err.stack);
-  res.status(500).render('500', {
-    stack: err.stack,
-    layout: false
-  });
-});
+// app.use(function (err, req, res, next) {
+//   // console.error(err.stack);
+//   res.status(500).render('500', {
+//     stack: err.stack,
+//     layout: false
+//   });
+// });
 
 
 app.listen(PORT,() => {
